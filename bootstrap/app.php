@@ -11,7 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+
+        // 'web' グループにミドルウェアを追加する
+        $middleware->web(append: [
+            \App\Http\Middleware\CartSession::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
